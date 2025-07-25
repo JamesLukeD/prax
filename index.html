@@ -1821,8 +1821,18 @@
     });
   }
 </script>
+</script>
+
+<!-- Admin Login Button (temporary for testing) -->
+<div id="netlify-identity-button" style="position: fixed; top: 10px; right: 10px; z-index: 1000;"></div>
+
 <script>
   if (window.netlifyIdentity) {
+    // Initialize the identity widget
+    window.netlifyIdentity.init({
+      container: '#netlify-identity-button' // This creates a login button
+    });
+
     window.netlifyIdentity.on("init", user => {
       if (!user) {
         window.netlifyIdentity.on("login", () => {
@@ -1839,6 +1849,10 @@
       }
     });
   }
+</script>
+
+  </body>
+</html>
 </script>
   </body>
 </html>
