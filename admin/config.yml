@@ -1,0 +1,38 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "Home Page Content"
+        name: "home"
+        file: "content/home.json"
+        fields:
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }
+          - { label: "About Title", name: "about_title", widget: "string" }
+          - { label: "About Content", name: "about_content", widget: "markdown" }
+          - label: "Contact Info"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Address", name: "address", widget: "text" }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Air Quality", "Case Study", "Regulation"] }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Content", name: "body", widget: "markdown" }
