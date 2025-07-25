@@ -1821,6 +1821,24 @@
     });
   }
 </script>
-  
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+    
+    // Handle email confirmation redirects
+    window.netlifyIdentity.on("ready", () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("confirmation_token")) {
+        window.netlifyIdentity.open("signup");
+      }
+    });
+  }
+</script>
   </body>
 </html>
